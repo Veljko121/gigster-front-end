@@ -1,0 +1,55 @@
+<div class="form">
+    <h1>Register</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="register()">
+        <div class="input-fields">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="first-name">First name</label>
+                    <input type="text" id="first-name" formControlName="firstName" autocomplete="given-name">
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last name</label>
+                    <input type="text" id="last-name" formControlName="lastName" autocomplete="family-name">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="username" class="required">Username</label>
+                <input type="text" id="username" formControlName="username" autocomplete="username" required>
+                @if (registrationForm.controls['username'].dirty) {
+                    <div class="errors">
+                        @if (registrationForm.controls['username'].errors?.['required']) {
+                            <p >This field is required.</p>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="input-group">
+                <label for="email" class="required">Email</label>
+                <input type="text" id="email" formControlName="email" autocomplete="email" required>
+                @if (registrationForm.controls['email'].dirty) {
+                    <div class="errors">
+                        @if (registrationForm.controls['email'].errors?.['required']) {
+                            <p >This field is required.</p>
+                        }
+                        @if (registrationForm.controls['email'].errors?.['email']) {
+                            <p >Provide a valid email address.</p>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="input-group">
+                <label for="password" class="required">Password</label>
+                <input type="password" id="password" formControlName="password" required>
+                @if (registrationForm.controls['password'].dirty) {
+                    <div class="errors">
+                        @if (registrationForm.controls['password'].errors?.['required']) {
+                            <p >This field is required.</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+        <p class="suggestion">Already have an account? <a [routerLink]="['/login']">Login.</a></p>
+    </form>
+</div>

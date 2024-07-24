@@ -1,0 +1,123 @@
+:root {
+    --hover-saturation-factor: 0.8;
+    --click-lightness-factor: 0.9;
+
+    --primary-clr-hue: 136;
+    --primary-clr-saturation: 53%;
+    --primary-clr-lightness: 25%;
+
+    --primary-clr-hover-saturation: calc(var(--primary-clr-saturation) * var(--hover-saturation-factor));
+
+    --primary-clr-click-lightness: calc(var(--primary-clr-lightness) * var(--click-lightness-factor));
+
+    /* accent colors */
+    --primary-clr: hsl(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness));
+    --primary-clr-hover: hsl(var(--primary-clr-hue), var(--primary-clr-hover-saturation), var(--primary-clr-lightness)); 
+    --primary-clr-click: hsl(var(--primary-clr-hue), var(--primary-clr-hover-saturation), var(--primary-clr-click-lightness));
+
+    /* theme colors */
+    --background-clr: white;
+    --text-color: black;
+    /* TODO */
+}
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+
+    box-sizing: border-box;
+
+    font-family: sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-clr);
+}
+
+button {
+    color: white;
+    background-color: var(--primary-clr);
+
+    font-size: 1rem;
+
+    border: 0px;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+
+    transition: 0.1s;
+}
+
+button:hover {
+    opacity: 90%;
+}
+
+button:active {
+    opacity: 80%;
+}
+
+input {
+    color: black;
+    background-color: white;
+
+    width: 100%;
+
+    font-size: large;
+    overflow: visible;
+
+    border: 1px solid #777;
+    border-radius: 5px;
+    padding: 5px;
+
+    transition: 0.15s;
+}
+
+input:focus {
+    border: 1px solid #111;
+    /* outline: 2px solid var(--primary-clr); */
+    outline: none;
+    box-shadow: 0 0 0 1px var(--background-clr), 0 0 0 3px var(--primary-clr);
+    outline-offset: 1px;
+}
+
+header {
+    background-color: var(--primary-clr);
+}
+
+a {
+    text-decoration: none;
+    color: #0039a3;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+}
+
+label.required::after {
+    content: '*';
+    margin-left: 2px;
+    color: rgb(200, 0, 0);
+}
+
+.errors p {
+    color: #dd2b0e;
+    margin-top: 0.2rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}

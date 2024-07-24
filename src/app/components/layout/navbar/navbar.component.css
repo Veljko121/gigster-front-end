@@ -1,0 +1,27 @@
+.panel {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    padding: 20px;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;  
+    justify-content: flex-end;
+    gap: 1rem;
+    list-style: none;
+}
+
+nav ul li {
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+
+    cursor: pointer;
+}
+
+.panel img {
+    cursor: pointer;
+    height: 30px;
+}

@@ -1,0 +1,14 @@
+<div class="panel">
+    <img src="./assets/logo-with-name.svg" alt="Logo" [routerLink]="['']"/>
+    <nav>
+        <ul class="nav-buttons">
+            <li>{{ user?.username }}</li>
+            @if (user?.username === '') {
+                <li [routerLink]="['login']">Login</li>
+            }
+            @if (user?.username !== '') {
+                <li (click)="logout()">Logout</li>
+            }
+        </ul>
+    </nav>
+</div>

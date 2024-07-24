@@ -1,0 +1,57 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: auto;
+    margin-top: 7rem;
+    padding: 1rem;
+
+    max-width: 500px;
+}
+
+.form h1 {
+    margin-bottom: 1rem;
+}
+
+.form p.suggestion {
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+}
+
+.input-group a {
+    margin-top: 0.6rem;
+    text-align: right;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    flex-grow: 1;
+    gap: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+}
