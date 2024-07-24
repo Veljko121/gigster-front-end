@@ -1,5 +1,8 @@
 <div class="panel">
-    <img src="./assets/logo-with-name.svg" alt="Logo" [routerLink]="['']"/>
+    <div class="branding" [routerLink]="['']">
+        <img src="./assets/logo.svg" alt="Logo"/>
+        <label>Gigster</label>
+    </div>
     <nav>
         <ul class="nav-buttons">
             <li>{{ user?.username }}</li>

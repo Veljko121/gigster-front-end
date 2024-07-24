@@ -25,3 +25,17 @@ nav ul li {
     cursor: pointer;
     height: 30px;
 }
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.branding label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    
+    cursor: pointer;
+}
