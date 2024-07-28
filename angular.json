@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-initial-application": {
+    "gigster-front-end": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-initial-application",
+            "outputPath": "dist/gigster-front-end",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-initial-application:build:production"
+              "buildTarget": "gigster-front-end:build:production"
             },
             "development": {
-              "buildTarget": "angular-initial-application:build:development"
+              "buildTarget": "gigster-front-end:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular-initial-application:build"
+            "buildTarget": "gigster-front-end:build"
           }
         },
         "test": {

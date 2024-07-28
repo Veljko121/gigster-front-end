@@ -13,6 +13,8 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./login.component.css', '../shared-styles.css']
 })
 export class LoginComponent {
+
+  invalidUsernameOrPassword: Boolean = false;
   
   constructor(
     private authService: AuthService,
@@ -34,6 +36,9 @@ export class LoginComponent {
       next: () => {
         this.router.navigate(['/']);
       },
+      error: () => {
+        this.invalidUsernameOrPassword = true;
+      }
     });
   }
 

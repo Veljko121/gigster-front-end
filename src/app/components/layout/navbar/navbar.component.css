@@ -2,14 +2,15 @@
     display: grid;
     grid-template-columns: auto 1fr;
 
-    padding: 20px;
+    /* padding: 0.8rem; */
     align-items: center;
 }
 
 nav ul {
     display: flex;  
     justify-content: flex-end;
-    gap: 1rem;
+    align-items: center;
+
     list-style: none;
 }
 
@@ -17,13 +18,26 @@ nav ul li {
     color: white;
     font-weight: bold;
     font-size: larger;
+    background-color: var(--primary-clr);
+    padding-block: 0.4rem;
+    padding-inline: 0.7rem;
 
     cursor: pointer;
 }
 
+nav ul li.bordered {
+    border: 1px white solid;
+    border-radius: 0.4rem;
+}
+
+nav ul li:hover {
+    background-color: var(--primary-clr-hover);
+    /* background-color: red; */
+}
+
 .panel img {
     cursor: pointer;
-    height: 30px;
+    height: 25px;
 }
 
 .branding {
@@ -33,9 +47,39 @@ nav ul li {
 }
 
 .branding label {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: white;
     
     cursor: pointer;
+}
+
+li.dropdown {
+    position: relative;
+}
+
+li.dropdown ul {
+    display: none;
+
+    position: absolute;
+    right: 0;
+
+    border-radius: 0.3rem;
+    
+    background-color: var(--primary-clr);
+}
+
+li.dropdown ul li {
+    font-size: 1rem;
+    padding: 0.5rem;
+
+    border: 1px white solid;
+}
+
+li.dropdown:hover ul {
+    display: block;
+}
+
+li.dropdown ul li:hover {
+    background-color: var(--primary-clr-hover);
 }

@@ -12,7 +12,7 @@ import { AuthService } from './components/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   
-  title = 'Angular Application';
+  title = 'Gigster';
 
   constructor(
     private authService: AuthService

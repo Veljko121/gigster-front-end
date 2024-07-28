@@ -23,6 +23,11 @@
                         }
                     </div>
                 }
+                @if (invalidUsernameOrPassword) {
+                    <div class="errors">
+                        <p>Invalid username or password.</p>
+                    </div>
+                }
             </div>
         </div>
         <button type="submit" [disabled]="loginForm.invalid">Log in</button>

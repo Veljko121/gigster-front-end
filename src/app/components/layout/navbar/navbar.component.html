@@ -5,12 +5,17 @@
     </div>
     <nav>
         <ul class="nav-buttons">
-            <li>{{ user?.username }}</li>
             @if (user?.username === '') {
                 <li [routerLink]="['login']">Login</li>
+                <li class="bordered" [routerLink]="['register']">Register</li>
             }
             @if (user?.username !== '') {
-                <li (click)="logout()">Logout</li>
+                <li class="dropdown">{{ user?.username }}
+                    <ul>
+                        <li [routerLink]="['profile']">Profile</li>
+                        <li (click)="logout()">Logout</li>
+                    </ul>
+                </li>
             }
         </ul>
     </nav>

@@ -1,19 +1,20 @@
 :root {
-    --hover-saturation-factor: 0.8;
-    --click-lightness-factor: 0.9;
+    --hover-lightness-factor: 0.7;
+    --click-lightness-factor: 0.5;
 
-    --primary-clr-hue: 136;
-    --primary-clr-saturation: 53%;
-    --primary-clr-lightness: 25%;
+    --primary-clr-hue: 0;
+    --primary-clr-saturation: 0%;
+    --primary-clr-lightness: 20%;
+    --primary-clr-alpha: 100%;
 
-    --primary-clr-hover-saturation: calc(var(--primary-clr-saturation) * var(--hover-saturation-factor));
+    --primary-clr-lightness-hover: calc(var(--primary-clr-lightness) * var(--hover-lightness-factor));
 
-    --primary-clr-click-lightness: calc(var(--primary-clr-lightness) * var(--click-lightness-factor));
+    --primary-clr-lightness-click: calc(var(--primary-clr-lightness) * var(--click-lightness-factor));
 
     /* accent colors */
-    --primary-clr: hsl(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness));
-    --primary-clr-hover: hsl(var(--primary-clr-hue), var(--primary-clr-hover-saturation), var(--primary-clr-lightness)); 
-    --primary-clr-click: hsl(var(--primary-clr-hue), var(--primary-clr-hover-saturation), var(--primary-clr-click-lightness));
+    --primary-clr: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness), var(--primary-clr-alpha));
+    --primary-clr-hover: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness-hover), var(--primary-clr-alpha)); 
+    --primary-clr-click: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness-click), var(--primary-clr-alpha));
 
     /* theme colors */
     --background-clr: white;
@@ -55,11 +56,11 @@ button {
 }
 
 button:hover {
-    opacity: 90%;
+    background-color: var(--primary-clr-hover);
 }
 
 button:active {
-    opacity: 80%;
+    background-color: var(--primary-clr-click);
 }
 
 input {
@@ -111,7 +112,7 @@ label.required::after {
 
 .errors p {
     color: #dd2b0e;
-    margin-top: 0.2rem;
+    margin-top: 0.4rem;
 }
 
 .flex {

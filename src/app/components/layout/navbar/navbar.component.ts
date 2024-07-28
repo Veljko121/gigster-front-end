@@ -13,7 +13,7 @@ import { NgIf } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
 
-  user: User | undefined;
+  user: User | undefined | null = null;
 
   constructor(
     private authService: AuthService,
