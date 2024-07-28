@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
-import { User } from '../../auth/model/user.model';
 import { RegisteredUser } from '../model/registered-user.model';
 import { RegisteredUserService } from '../registered-user.service';
+import { ProfilePictureService } from '../profile-picture.service';
 
 @Component({
   selector: 'msm-user-profile',
@@ -14,9 +13,11 @@ import { RegisteredUserService } from '../registered-user.service';
 export class UserProfileComponent {
 
   registeredUser: RegisteredUser | undefined;
+  profilePicturePath: string | undefined;
 
   constructor(
-    private registeredUserService: RegisteredUserService
+    private registeredUserService: RegisteredUserService,
+    private profilePicturesService: ProfilePictureService
   ) { }
 
   ngOnInit(): void {
@@ -27,11 +28,16 @@ export class UserProfileComponent {
     this.registeredUserService.getLoggedInRegisteredUser().subscribe({
       next: registeredUser => {
         this.registeredUser = registeredUser;
+        this.loadProfilePicture(registeredUser.profilePicturePath);
       },
       error: () => {
         alert("ERROR");
       }
     })
+  }
+
+  loadProfilePicture(profilePictureName: string): void {
+    this.profilePicturePath = this.profilePicturesService.getProfilePicturePath(profilePictureName);
   }
 
 }

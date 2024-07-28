@@ -1,18 +1,21 @@
 <div class="wrapper">
     <div class="profile-details">
-        <img [src]="registeredUser?.profilePicturePath">
+        <div class="image"><img [src]="profilePicturePath"></div>
         <div class="profile-detail">
-            <svg></svg>
-            <span class="full-name">Veljko Nikolić</span>
+            <span class="full-name">{{registeredUser?.firstName}} {{registeredUser?.lastName}}</span>
         </div>
         <div class="profile-detail">
-            <svg></svg>
-            <span class="username">veljko</span>
+            <img src="./assets/user.svg">
+            <span class="username">{{registeredUser?.username}}</span>
         </div>
         <div class="profile-detail">
-            <svg></svg>
-            <span class="email">nikolicveljko01gmail.com</span>
+            <img src="./assets/email.svg">
+            <span class="email">{{registeredUser?.email}}</span>
         </div>
+
+        <button>Edit profile</button>
     </div>
-    <div class="bands"></div>
+    <div class="bands">
+        <h1>My bands</h1>
+    </div>
 </div>

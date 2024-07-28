@@ -1,9 +1,43 @@
 .wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
 }
 
-.wrapper .profile-details {
+.profile-details {
     display: flex;
     flex-direction: column;
 }
 
+.image {
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 50%;
+
+    margin-bottom: 1rem;
+}
+
+.profile-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.profile-detail img {
+    height: 0.9rem;
+    width: 1rem;
+}
+
+span.full-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+span.username, span.email {
+    font-size: 1.1rem;
+}
+
+.profile-details button {
+    margin-top: 0.3rem;
+}
