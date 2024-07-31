@@ -7,7 +7,7 @@
         <ul class="nav-buttons">
             @if (user?.username === '') {
                 <li [routerLink]="['login']">Login</li>
-                <li class="bordered" [routerLink]="['register']">Register</li>
+                <li [routerLink]="['register']">Register</li>
             }
             @if (user?.username !== '') {
                 <li class="dropdown">{{ user?.username }}

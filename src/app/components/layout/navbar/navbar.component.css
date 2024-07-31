@@ -25,14 +25,8 @@ nav ul li {
     cursor: pointer;
 }
 
-nav ul li.bordered {
-    border: 1px white solid;
-    border-radius: 0.4rem;
-}
-
 nav ul li:hover {
     background-color: var(--primary-clr-hover);
-    /* background-color: red; */
 }
 
 .panel img {
