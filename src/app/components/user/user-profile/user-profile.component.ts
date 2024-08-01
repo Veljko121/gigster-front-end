@@ -47,7 +47,7 @@ export class UserProfileComponent {
     if (file) {
       this.registeredUserService.updateProfilePicture(file).subscribe({
         next: () => {
-          this.loadLoggedInRegisteredUser();
+          this.loadProfilePicture(this.registeredUser!.id);
         },
         error: () => {
           alert('ERROR when updating profile picture');
