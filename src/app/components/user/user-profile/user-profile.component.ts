@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisteredUser } from '../model/registered-user.model';
 import { RegisteredUserService } from '../registered-user.service';
-import { ProfilePictureService } from '../profile-picture.service';
 
 @Component({
   selector: 'msm-user-profile',
@@ -17,7 +16,6 @@ export class UserProfileComponent {
 
   constructor(
     private registeredUserService: RegisteredUserService,
-    private profilePicturesService: ProfilePictureService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +26,7 @@ export class UserProfileComponent {
     this.registeredUserService.getLoggedInRegisteredUser().subscribe({
       next: registeredUser => {
         this.registeredUser = registeredUser;
-        this.loadProfilePicture(registeredUser.profilePicturePath);
+        this.loadProfilePicture(this.registeredUser.id);
       },
       error: () => {
         alert("ERROR");
@@ -36,8 +34,26 @@ export class UserProfileComponent {
     })
   }
 
-  loadProfilePicture(profilePictureName: string): void {
-    this.profilePicturePath = this.profilePicturesService.getProfilePicturePath(profilePictureName);
+  loadProfilePicture(id: number): void {
+    this.profilePicturePath = this.registeredUserService.getProfilePicturePathByRegisteredUserId(id) + '?' + (new Date()).getTime();
+  }
+
+  openFile(): void {
+    document.getElementById('file-dialog')?.click();
+  }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.registeredUserService.updateProfilePicture(file).subscribe({
+        next: () => {
+          this.loadLoggedInRegisteredUser();
+        },
+        error: () => {
+          alert('ERROR when updating profile picture');
+        }
+      })
+    }
   }
 
 }

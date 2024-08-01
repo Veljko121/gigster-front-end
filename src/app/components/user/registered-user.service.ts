@@ -20,4 +20,16 @@ export class RegisteredUserService {
     return this.http.get<RegisteredUser>(path);
   }
 
+  getProfilePicturePathByRegisteredUserId(registeredUserId: number): string {
+    const path = this.basePath + '/' + registeredUserId + '/profile-picture';
+    return path;
+  }
+
+  updateProfilePicture(picture: File): Observable<any> {
+    const path = this.basePath + '/profile-picture';
+    const formData = new FormData();
+    formData.append('file', picture);
+    return this.http.patch(path, formData);
+  }
+
 }

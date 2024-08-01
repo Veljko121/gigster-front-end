@@ -15,7 +15,23 @@
     overflow: hidden;
     border-radius: 50%;
 
+    position: relative;
+
     margin-bottom: 1rem;
+}
+
+.image .pen {
+    position: absolute;
+    height: 1.5rem;
+
+    left: 11.5rem;
+    top: 11.5rem;
+
+    cursor: pointer;
+}
+
+.image input {
+    display: none;
 }
 
 .profile-detail {

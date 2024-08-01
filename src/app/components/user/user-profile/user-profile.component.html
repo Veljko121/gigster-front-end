@@ -1,6 +1,10 @@
 <div class="wrapper">
     <div class="profile-details">
-        <div class="image"><img [src]="profilePicturePath"></div>
+        <div class="image">
+            <img class="pen" src="./assets/pen-black.svg" (click)="openFile()">
+            <input id="file-dialog" type="file" (change)="onFileSelected($event)">
+            <img [src]="profilePicturePath">
+        </div>
         <div class="profile-detail">
             <span class="full-name">{{registeredUser?.firstName}} {{registeredUser?.lastName}}</span>
         </div>
