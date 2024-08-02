@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RegisteredUser } from '../model/registered-user.model';
 import { RegisteredUserService } from '../registered-user.service';
+import { UpdateProfileComponent } from '../update-profile/update-profile.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'msm-user-profile',
   standalone: true,
-  imports: [],
+  imports: [MatDialogModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
@@ -16,6 +18,7 @@ export class UserProfileComponent {
 
   constructor(
     private registeredUserService: RegisteredUserService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +32,7 @@ export class UserProfileComponent {
         this.loadProfilePicture(this.registeredUser.id);
       },
       error: () => {
-        alert("ERROR");
+        alert("Error while loading profile page.");
       }
     })
   }
@@ -50,10 +53,22 @@ export class UserProfileComponent {
           this.loadProfilePicture(this.registeredUser!.id);
         },
         error: () => {
-          alert('ERROR when updating profile picture');
+          alert('Error when updating profile picture');
         }
       })
     }
+  }
+
+  openUpdateProfileDialog(): void {
+    let dialogRef = this.dialog.open(UpdateProfileComponent, {
+      data: {
+        registeredUser: this.registeredUser
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadLoggedInRegisteredUser();
+    })
   }
 
 }
