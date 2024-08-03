@@ -9,7 +9,7 @@ import { Registration } from '../model/registration.model';
   standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css', '../shared-styles.css']
+  styleUrls: ['./registration.component.css', '../../shared-styles.css']
 })
 export class RegistrationComponent {
 

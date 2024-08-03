@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RegisteredUser } from '../model/registered-user.model';
 import { RegisteredUserService } from '../registered-user.service';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
@@ -11,7 +11,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
 
   registeredUser: RegisteredUser | undefined;
   profilePicturePath: string | undefined;
