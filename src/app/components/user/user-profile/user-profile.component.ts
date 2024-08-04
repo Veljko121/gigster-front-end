@@ -18,7 +18,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private registeredUserService: RegisteredUserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    
   ) { }
 
   ngOnInit(): void {

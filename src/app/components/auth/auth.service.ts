@@ -72,4 +72,9 @@ export class AuthService {
     this.user$.next(user);
   }
 
+  setToken(authenticationResponse: AuthenticationResponse) {
+    this.tokenStorage.saveAccessToken(authenticationResponse.token);
+    this.setUser();
+  }
+
 }
