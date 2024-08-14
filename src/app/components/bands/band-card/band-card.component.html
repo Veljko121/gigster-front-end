@@ -6,11 +6,11 @@
 
     <div class="tags">
 
-        <msm-tag>{{band().type | titlecase}}</msm-tag>
+        <gig-tag>{{band().type | titlecase}}</gig-tag>
 
         <div class="genres">
             @for (genre of band().genres; track $index) {
-                <msm-tag>{{genre.name}}</msm-tag>
+                <gig-tag>{{genre.name}}</gig-tag>
             }
         </div>
 

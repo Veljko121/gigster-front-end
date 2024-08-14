@@ -4,7 +4,7 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { AuthService } from './components/auth/auth.service';
 
 @Component({
-  selector: 'msm-root',
+  selector: 'gig-root',
   standalone: true,
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',

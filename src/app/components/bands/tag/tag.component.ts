@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'msm-tag',
+  selector: 'gig-tag',
   standalone: true,
   imports: [],
   templateUrl: './tag.component.html',

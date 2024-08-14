@@ -5,7 +5,7 @@ import { User } from '../../auth/model/user.model';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'msm-navbar',
+  selector: 'gig-navbar',
   standalone: true,
   imports: [RouterLink, NgIf],
   templateUrl: './navbar.component.html',

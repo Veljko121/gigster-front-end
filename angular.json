@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "msm",
+      "prefix": "gig",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",

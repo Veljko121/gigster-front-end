@@ -6,7 +6,7 @@ import { Login } from '../model/login.model';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'msm-login',
+  selector: 'gig-login',
   standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',

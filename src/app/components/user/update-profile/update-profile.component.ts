@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { RegisteredUser } from '../model/registered-user.model';
 
 @Component({
-  selector: 'msm-update-profile',
+  selector: 'gig-update-profile',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './update-profile.component.html',

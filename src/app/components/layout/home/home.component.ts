@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../../../env/environment';
 
 @Component({
-  selector: 'msm-home',
+  selector: 'gig-home',
   standalone: true,
   imports: [],
   templateUrl: './home.component.html',

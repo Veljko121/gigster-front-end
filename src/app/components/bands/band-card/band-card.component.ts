@@ -4,7 +4,7 @@ import { TagComponent } from "../tag/tag.component";
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
-  selector: 'msm-band-card',
+  selector: 'gig-band-card',
   standalone: true,
   imports: [TagComponent, TitleCasePipe],
   templateUrl: './band-card.component.html',

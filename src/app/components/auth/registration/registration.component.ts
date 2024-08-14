@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 import { Registration } from '../model/registration.model';
 
 @Component({
-  selector: 'msm-registration',
+  selector: 'gig-registration',
   standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './registration.component.html',

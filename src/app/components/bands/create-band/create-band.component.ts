@@ -9,7 +9,7 @@ import { BandService } from '../band.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'msm-create-band',
+  selector: 'gig-create-band',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, NgFor, TitleCasePipe],
   templateUrl: './create-band.component.html',

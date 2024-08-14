@@ -9,7 +9,7 @@ import { Band } from '../../bands/model/band.model';
 import { BandCardComponent } from "../../bands/band-card/band-card.component";
 
 @Component({
-  selector: 'msm-user-profile',
+  selector: 'gig-user-profile',
   standalone: true,
   imports: [MatDialogModule, BandCardComponent],
   templateUrl: './user-profile.component.html',
