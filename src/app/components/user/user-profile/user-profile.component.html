@@ -1,28 +1,42 @@
 <div class="wrapper">
     <div class="profile-details">
+
         <div class="image">
             <img class="pen" src="./assets/pen-black.svg" (click)="openFile()">
             <input id="file-dialog" type="file" (change)="onFileSelected($event)">
             <img [src]="profilePicturePath">
         </div>
+
         <div class="profile-detail">
             <span class="full-name">{{registeredUser?.firstName}} {{registeredUser?.lastName}}</span>
         </div>
+
         <div class="profile-detail">
             <img src="./assets/at.svg">
             <span class="username">{{registeredUser?.username}}</span>
         </div>
+
         <div class="profile-detail">
             <img src="./assets/email.svg">
             <span class="email">{{registeredUser?.email}}</span>
         </div>
 
         <button (click)="openUpdateProfileDialog()">Edit profile</button>
+
     </div>
-    <div class="bands">
+
+    <div class="content">
+
         <div class="header">
             <h1>My bands</h1>
             <button (click)="openCreateBandDialog()">Add</button>
         </div>
+
+        <div class="bands">
+            @for (band of bands; track $index) {
+                <msm-band-card [band]="band"></msm-band-card>
+            }
+        </div>
+
     </div>
 </div>

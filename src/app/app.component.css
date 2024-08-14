@@ -1,3 +1,6 @@
 .pages {
-    padding: 1rem;
+    padding: 2rem;
+
+    max-width: 1920px;
+    margin-inline: auto;
 }

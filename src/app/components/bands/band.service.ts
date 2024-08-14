@@ -25,5 +25,10 @@ export class BandService {
     const path = this.basePath + '/types';
     return this.http.get<string[]>(path);
   }
+  
+  getMyBands(): Observable<Band[]> {
+    const path = this.basePath + '/my';
+    return this.http.get<Band[]>(path);
+  } 
 
 }

@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { RouterLink } from '@angular/router';
 import { GenreService } from '../genre.service';
 import { Genre } from '../model/genre.model';
-import { NgFor } from '@angular/common';
+import { NgFor, TitleCasePipe } from '@angular/common';
 import { BandRequest } from '../model/band.request.model';
 import { BandService } from '../band.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'msm-create-band',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgFor],
+  imports: [RouterLink, ReactiveFormsModule, NgFor, TitleCasePipe],
   templateUrl: './create-band.component.html',
   styleUrls: ['./create-band.component.css', '../../shared-styles.css']
 })
@@ -44,8 +44,15 @@ export class CreateBandComponent implements OnInit {
   }
 
   loadBandTypes(): void {
-    this.bandTypes = ['Acoustic', 'Arrangement', 'Rock'];
-    this.bandForm.get('type')?.setValue(this.bandTypes[0]);
+    // this.bandTypes = ['Acoustic', 'Arrangement', 'Rock'];
+    // this.bandForm.get('type')?.setValue(this.bandTypes[0]);
+    
+    this.bandService.getBandTypes().subscribe({
+      next: result => {
+        this.bandTypes = result;
+        this.bandForm.get('type')?.setValue(this.bandTypes[0]);
+      }
+    })
   }
 
   bandForm = new FormGroup({
@@ -93,7 +100,6 @@ export class CreateBandComponent implements OnInit {
       type: values.type?.toLocaleUpperCase() || '',
       genreIds: this.getSelectedGenres(),
     }
-    console.log(bandRequest);
     return bandRequest;
   }
 

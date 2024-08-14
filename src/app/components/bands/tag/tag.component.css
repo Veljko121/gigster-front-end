@@ -1,0 +1,10 @@
+.tag {
+    display: inline-flex;
+    justify-content: center;
+
+    padding: 0.35rem 0.55rem;
+
+    border-radius: 1rem;
+    background-color: var(--primary-clr);
+    color: white;
+}

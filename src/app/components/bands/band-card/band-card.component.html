@@ -1,0 +1,19 @@
+<div class="band-card">
+    
+    <h1>{{band().name}}</h1>
+
+    <p>{{band().description}}</p>
+
+    <div class="tags">
+
+        <msm-tag>{{band().type | titlecase}}</msm-tag>
+
+        <div class="genres">
+            @for (genre of band().genres; track $index) {
+                <msm-tag>{{genre.name}}</msm-tag>
+            }
+        </div>
+
+    </div>
+    
+</div>

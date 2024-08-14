@@ -23,7 +23,7 @@
                 <label for="type" class="required">Type</label>
                 <select formControlName="type">
                     @for (bandType of bandTypes; track $index) {
-                        <option>{{bandType}}</option>
+                        <option>{{bandType | titlecase}}</option>
                     }
                 </select>
             </div>
