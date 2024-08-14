@@ -57,3 +57,8 @@ span.username, span.email {
 .profile-details button {
     margin-top: 0.3rem;
 }
+
+.bands .header {
+    display: flex;
+    justify-content: space-between;
+}

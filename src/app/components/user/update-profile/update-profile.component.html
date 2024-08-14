@@ -5,10 +5,24 @@
                 <div class="input-group">
                     <label for="first-name" class="required">First name</label>
                     <input type="text" id="first-name" formControlName="firstName" autocomplete="given-name">
+                    @if (registrationForm.controls['firstName'].dirty) {
+                        <div class="errors">
+                            @if (registrationForm.controls['firstName'].errors?.['required']) {
+                                <p>This field is required.</p>
+                            }
+                        </div>
+                    }
                 </div>
                 <div class="input-group">
                     <label for="last-name" class="required">Last name</label>
                     <input type="text" id="last-name" formControlName="lastName" autocomplete="family-name">
+                    @if (registrationForm.controls['lastName'].dirty) {
+                        <div class="errors">
+                            @if (registrationForm.controls['lastName'].errors?.['required']) {
+                                <p>This field is required.</p>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
             <div class="input-group">
@@ -17,7 +31,7 @@
                 @if (registrationForm.controls['username'].dirty) {
                     <div class="errors">
                         @if (registrationForm.controls['username'].errors?.['required']) {
-                            <p >This field is required.</p>
+                            <p>This field is required.</p>
                         }
                     </div>
                 }
@@ -28,10 +42,10 @@
                 @if (registrationForm.controls['email'].dirty) {
                     <div class="errors">
                         @if (registrationForm.controls['email'].errors?.['required']) {
-                            <p >This field is required.</p>
+                            <p>This field is required.</p>
                         }
                         @if (registrationForm.controls['email'].errors?.['email']) {
-                            <p >Provide a valid email address.</p>
+                            <p>Provide a valid email address.</p>
                         }
                     </div>
                 }

@@ -10,7 +10,7 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', '../../shared-styles.css']
+  styleUrls: ['./login.component.css', '../shared-styles.css', '../../shared-styles.css']
 })
 export class LoginComponent {
 

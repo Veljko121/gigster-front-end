@@ -63,7 +63,7 @@ button:active {
     background-color: var(--primary-clr-click);
 }
 
-input {
+input, textarea, select {
     color: black;
     background-color: white;
 
@@ -79,12 +79,30 @@ input {
     transition: 0.15s;
 }
 
-input:focus {
+select {
+    accent-color: var(--primary-clr);
+}
+
+input[type='checkbox'] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--primary-clr);
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus, textarea:focus, select:focus {
     border: 1px solid #111;
     /* outline: 2px solid var(--primary-clr); */
     outline: none;
     box-shadow: 0 0 0 1px var(--background-clr), 0 0 0 3px var(--primary-clr);
     outline-offset: 1px;
+}
+
+input[type='checkbox']:focus {
+    box-shadow: none;
 }
 
 header {

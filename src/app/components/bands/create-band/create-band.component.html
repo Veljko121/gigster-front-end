@@ -1,0 +1,48 @@
+<div class="form">
+    <form [formGroup]="bandForm" (ngSubmit)="createBand()">
+        <div class="input-fields">
+
+            <div class="input-group">
+                <label for="name" class="required">Name</label>
+                <input type="text" id="name" formControlName="name" autocomplete="band-name">
+                @if (bandForm.controls['name'].dirty) {
+                    <div class="errors">
+                        @if (bandForm.controls['name'].errors?.['required']) {
+                            <p>This field is required.</p>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="input-group">
+                <label for="description">Description</label>
+                <textarea id="description" formControlName="description" rows="7" cols="50"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="type" class="required">Type</label>
+                <select formControlName="type">
+                    @for (bandType of bandTypes; track $index) {
+                        <option>{{bandType}}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="description">Genres</label>
+                <div class="genres" formArrayName="genres">
+                    @for (genre of genres; track $index) {
+                        <span>
+                            <input type="checkbox" [formControlName]="$index" [value]="genre.id">
+                            <span>{{genre.name}}</span>
+                        </span>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit">Create</button>
+
+    </form>
+</div>

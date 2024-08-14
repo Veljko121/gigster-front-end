@@ -3,6 +3,7 @@ import { RegisteredUser } from '../model/registered-user.model';
 import { RegisteredUserService } from '../registered-user.service';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CreateBandComponent } from '../../bands/create-band/create-band.component';
 
 @Component({
   selector: 'msm-user-profile',
@@ -69,6 +70,13 @@ export class UserProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.loadLoggedInRegisteredUser();
+    })
+  }
+
+  openCreateBandDialog(): void {
+    let dialogRef = this.dialog.open(CreateBandComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
     })
   }
 

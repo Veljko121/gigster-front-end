@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { RegisteredUserService } from '../registered-user.service';
 import { RegisteredUserUpdate } from '../model/registered-user-update.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import { RegisteredUser } from '../model/registered-user.model';
 @Component({
   selector: 'msm-update-profile',
   standalone: true,
-  imports: [RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css', '../../shared-styles.css']
 })
