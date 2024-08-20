@@ -36,7 +36,7 @@
             @for (band of bands; track $index) {
                 <gig-band-card [band]="band">
                     <button (click)="updateBand(band)">Edit</button>
-                    <button>Delete</button>
+                    <button (click)="deleteBand(band)">Delete</button>
                 </gig-band-card>
             }
         </div>

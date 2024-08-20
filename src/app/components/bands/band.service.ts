@@ -47,5 +47,10 @@ export class BandService {
     const path = this.basePath + '/' + bandId;
     return this.http.put<Band>(path, bandRequest);
   }
+  
+  deleteBand(bandId: number): Observable<any> {
+    const path = this.basePath + '/' + bandId;
+    return this.http.delete<any>(path);
+  }
 
 }

@@ -115,4 +115,15 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  deleteBand(band: Band): void {
+    this.bandService.deleteBand(band.id).subscribe({
+      next: result => {
+        this.loadMyBands();
+      },
+      error: () => {
+        alert('Error when deleting band.');
+      }
+    })
+  }
+
 }
