@@ -34,7 +34,10 @@
 
         <div class="bands">
             @for (band of bands; track $index) {
-                <gig-band-card [band]="band"></gig-band-card>
+                <gig-band-card [band]="band">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </gig-band-card>
             }
         </div>
 

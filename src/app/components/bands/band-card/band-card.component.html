@@ -5,22 +5,25 @@
     </div>
 
     <div class="details">
-        <h1>{{band().name}}</h1>
+
+        <div>
+            <h1>{{band().name}}</h1>
     
-        <p>{{band().description}}</p>
-    
-        <div class="tags">
-    
-            <gig-tag>{{band().type | titlecase}}</gig-tag>
-    
-            <div class="genres">
-                @for (genre of band().genres; track $index) {
-                    <gig-tag>{{genre.name}}</gig-tag>
-                }
-            </div>
-    
+            <p>{{band().description}}</p>
         </div>
+        
+        <div class="buttons">
+            <ng-content></ng-content>
+        </div>
+
+        <gig-tag>{{band().type | titlecase}}</gig-tag>
+
+        <div class="genres">
+            @for (genre of band().genres; track $index) {
+                <gig-tag>{{genre.name}}</gig-tag>
+            }
+        </div>
+
     </div>
-    
     
 </div>
