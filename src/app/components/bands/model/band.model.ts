@@ -7,5 +7,6 @@ export interface Band {
     description: string,
     type: string,
     genres: Genre[],
-    owner: RegisteredUser
+    owner: RegisteredUser,
+    photoPath: string
 }

@@ -1,19 +1,26 @@
 <div class="band-card">
-    
-    <h1>{{band().name}}</h1>
 
-    <p>{{band().description}}</p>
-
-    <div class="tags">
-
-        <gig-tag>{{band().type | titlecase}}</gig-tag>
-
-        <div class="genres">
-            @for (genre of band().genres; track $index) {
-                <gig-tag>{{genre.name}}</gig-tag>
-            }
-        </div>
-
+    <div class="image">
+        <img [src]="photoUrl">
     </div>
+
+    <div class="details">
+        <h1>{{band().name}}</h1>
+    
+        <p>{{band().description}}</p>
+    
+        <div class="tags">
+    
+            <gig-tag>{{band().type | titlecase}}</gig-tag>
+    
+            <div class="genres">
+                @for (genre of band().genres; track $index) {
+                    <gig-tag>{{genre.name}}</gig-tag>
+                }
+            </div>
+    
+        </div>
+    </div>
+    
     
 </div>

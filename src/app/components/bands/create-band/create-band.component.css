@@ -13,3 +13,27 @@
     align-items: center;
     gap: 0.2rem;
 }
+
+.image {
+    height: 22rem;
+    overflow: hidden;
+    border-radius: 2rem;
+
+    position: relative;
+
+    margin-bottom: 1rem;
+}
+
+.image .pen {
+    position: absolute;
+    height: 1.5rem;
+
+    left: 27rem;
+    top: 19.5rem;
+
+    cursor: pointer;
+}
+
+.image input {
+    display: none;
+}

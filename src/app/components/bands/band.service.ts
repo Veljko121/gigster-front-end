@@ -29,6 +29,18 @@ export class BandService {
   getMyBands(): Observable<Band[]> {
     const path = this.basePath + '/my';
     return this.http.get<Band[]>(path);
-  } 
+  }
+
+  uploadBandPhoto(photo: File, bandId: number): Observable<any> {
+    const path = this.basePath + '/' + bandId + '/photo';
+    const formData = new FormData();
+    formData.append('file', photo);
+    return this.http.patch(path, formData);
+  }
+
+  getBandPhoto(bandId: number): string {
+    const path = this.basePath + '/' + bandId + '/photo';
+    return path;
+  }
 
 }

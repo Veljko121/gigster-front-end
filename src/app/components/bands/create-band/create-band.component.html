@@ -1,6 +1,13 @@
 <div class="form">
     <form [formGroup]="bandForm" (ngSubmit)="createBand()">
+
         <div class="input-fields">
+
+            <div class="image">
+                <img class="pen" src="./assets/pen-black.svg" (click)="openFile()">
+                <input id="band-photo-dialog" type="file" (change)="onFileSelected($event)">
+                <img [src]="photoUrl">
+            </div>
 
             <div class="input-group">
                 <label for="name" class="required">Name</label>

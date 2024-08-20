@@ -11,7 +11,10 @@ import { BandCardComponent } from "../../bands/band-card/band-card.component";
 @Component({
   selector: 'gig-user-profile',
   standalone: true,
-  imports: [MatDialogModule, BandCardComponent],
+  imports: [
+    MatDialogModule,
+    BandCardComponent,
+  ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })

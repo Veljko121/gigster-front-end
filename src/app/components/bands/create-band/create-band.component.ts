@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { RouterLink } from '@angular/router';
 import { GenreService } from '../genre.service';
 import { Genre } from '../model/genre.model';
-import { NgFor, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { BandRequest } from '../model/band.request.model';
 import { BandService } from '../band.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -11,7 +11,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'gig-create-band',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgFor, TitleCasePipe],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    TitleCasePipe
+  ],
   templateUrl: './create-band.component.html',
   styleUrls: ['./create-band.component.css', '../../shared-styles.css']
 })
@@ -19,6 +23,8 @@ export class CreateBandComponent implements OnInit {
 
   genres: Genre[] = [];
   bandTypes: string[] = [];
+  photoUrl: string | ArrayBuffer | null = null;
+  image?: File;
 
   constructor(
     private dialogRef: MatDialogRef<CreateBandComponent>,
@@ -44,9 +50,6 @@ export class CreateBandComponent implements OnInit {
   }
 
   loadBandTypes(): void {
-    // this.bandTypes = ['Acoustic', 'Arrangement', 'Rock'];
-    // this.bandForm.get('type')?.setValue(this.bandTypes[0]);
-    
     this.bandService.getBandTypes().subscribe({
       next: result => {
         this.bandTypes = result;
@@ -84,7 +87,16 @@ export class CreateBandComponent implements OnInit {
     const bandRequest = this.mapToRequestDTO();
     this.bandService.createBand(bandRequest).subscribe({
       next: result => {
-        this.dialogRef.close(result);
+        if (this.image) {
+          this.bandService.uploadBandPhoto(this.image, result.id).subscribe({
+            next: result => {
+              this.dialogRef.close(result);
+            },
+            error: result => {
+              alert("Error while uploading band photo.");
+            }
+          });
+        }
       },
       error: () => {
         alert('Error while creating a band.');
@@ -101,6 +113,26 @@ export class CreateBandComponent implements OnInit {
       genreIds: this.getSelectedGenres(),
     }
     return bandRequest;
+  }
+
+  openFile(): void {
+    document.getElementById('band-photo-dialog')?.click();
+  }
+
+  onFileSelected(event: any): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files[0]) {
+      this.image = input.files[0];
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.photoUrl = reader.result;
+      };
+
+      reader.readAsDataURL(this.image);
+    }
   }
 
 }
