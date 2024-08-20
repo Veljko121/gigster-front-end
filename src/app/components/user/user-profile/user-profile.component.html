@@ -4,7 +4,7 @@
         <div class="image">
             <img class="pen" src="./assets/pen-black.svg" (click)="openFile()">
             <input id="file-dialog" type="file" (change)="onFileSelected($event)">
-            <img [src]="profilePicturePath">
+            <img [src]="profilePicturePath" [gigDefaultImage]="'../../../assets/default-profile-picture.png'">
         </div>
 
         <div class="profile-detail">
@@ -35,7 +35,7 @@
         <div class="bands">
             @for (band of bands; track $index) {
                 <gig-band-card [band]="band">
-                    <button>Edit</button>
+                    <button (click)="updateBand(band)">Edit</button>
                     <button>Delete</button>
                 </gig-band-card>
             }

@@ -7,6 +7,8 @@ import { CreateBandComponent } from '../../bands/create-band/create-band.compone
 import { BandService } from '../../bands/band.service';
 import { Band } from '../../bands/model/band.model';
 import { BandCardComponent } from "../../bands/band-card/band-card.component";
+import { UpdateBandComponent } from '../../bands/update-band/update-band.component';
+import { DefaultImageDirective } from '../../../directives/default-image.directive';
 
 @Component({
   selector: 'gig-user-profile',
@@ -14,6 +16,7 @@ import { BandCardComponent } from "../../bands/band-card/band-card.component";
   imports: [
     MatDialogModule,
     BandCardComponent,
+    DefaultImageDirective,
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
@@ -94,6 +97,18 @@ export class UserProfileComponent implements OnInit {
 
   openCreateBandDialog(): void {
     let dialogRef = this.dialog.open(CreateBandComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadMyBands();
+    })
+  }
+
+  updateBand(band: Band): void {
+    let dialogRef = this.dialog.open(UpdateBandComponent, {
+      data: {
+        band: band
+      }
+    });
 
     dialogRef.afterClosed().subscribe(() => {
       this.loadMyBands();

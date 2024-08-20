@@ -43,4 +43,9 @@ export class BandService {
     return path;
   }
 
+  updateBand(bandId: number, bandRequest: BandRequest): Observable<Band> {
+    const path = this.basePath + '/' + bandId;
+    return this.http.put<Band>(path, bandRequest);
+  }
+
 }

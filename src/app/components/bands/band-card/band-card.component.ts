@@ -1,8 +1,9 @@
 import { Component, input, OnInit } from '@angular/core';
 import { Band } from '../model/band.model';
 import { TagComponent } from "../tag/tag.component";
-import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { BandService } from '../band.service';
+import { DefaultImageDirective } from '../../../directives/default-image.directive';
 
 @Component({
   selector: 'gig-band-card',
@@ -10,7 +11,7 @@ import { BandService } from '../band.service';
   imports: [
     TagComponent,
     TitleCasePipe,
-    NgOptimizedImage,
+    DefaultImageDirective,
   ],
   templateUrl: './band-card.component.html',
   styleUrl: './band-card.component.css'

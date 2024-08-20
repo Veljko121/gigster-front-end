@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { GenreService } from '../genre.service';
+import { Component, Inject, input, OnInit } from '@angular/core';
 import { Genre } from '../model/genre.model';
-import { TitleCasePipe } from '@angular/common';
-import { BandRequest } from '../model/band.request.model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BandService } from '../band.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { GenreService } from '../genre.service';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BandRequest } from '../model/band.request.model';
+import { Band } from '../model/band.model';
+import { RouterLink } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 import { DefaultImageDirective } from '../../../directives/default-image.directive';
 
 @Component({
-  selector: 'gig-create-band',
+  selector: 'gig-update-band',
   standalone: true,
   imports: [
     RouterLink,
@@ -18,15 +19,16 @@ import { DefaultImageDirective } from '../../../directives/default-image.directi
     TitleCasePipe,
     DefaultImageDirective
   ],
-  templateUrl: './create-band.component.html',
+  templateUrl: './update-band.component.html',
   styleUrls: [
-    './create-band.component.css',
+    './update-band.component.css',
     '../shared-styles.css',
     '../../shared-styles.css'
   ]
 })
-export class CreateBandComponent implements OnInit {
+export class UpdateBandComponent implements OnInit {
 
+  band: Band;
   genres: Genre[] = [];
   bandTypes: string[] = [];
   photoUrl: string | ArrayBuffer | null = null;
@@ -40,14 +42,22 @@ export class CreateBandComponent implements OnInit {
   });
 
   constructor(
-    private dialogRef: MatDialogRef<CreateBandComponent>,
+    private dialogRef: MatDialogRef<UpdateBandComponent>,
     private bandService: BandService,
     private genreService: GenreService,
-  ) {}
+    @Inject(MAT_DIALOG_DATA) private data: any,
+  ) {
+    this.band = data.band;
+    this.bandForm.patchValue({
+      name: this.band.name,
+      description: this.band.description,
+    })
+  }
   
   ngOnInit(): void {
     this.loadGenres();
     this.loadBandTypes();
+    this.loadBandPhoto();
   }
 
   loadGenres(): void {
@@ -66,14 +76,26 @@ export class CreateBandComponent implements OnInit {
     this.bandService.getBandTypes().subscribe({
       next: result => {
         this.bandTypes = result;
-        this.bandForm.get('type')?.setValue(this.bandTypes[0]);
+
+        for (let bandType of this.bandTypes) {
+          if (this.band.type === bandType) {
+            this.bandForm.get('type')?.setValue(bandType);
+            break;
+          }
+        }
+
       }
     })
   }
 
+  loadBandPhoto(): void {
+    this.photoUrl = this.bandService.getBandPhoto(this.band.id);
+  }
+
   addGenreControls(): void {
-    this.genres.forEach(() => {
-      (this.bandForm.get('genres') as FormArray).push(new FormControl(false));
+    this.genres.forEach((genre) => {
+      const contains = this.band.genres.some(bandGenre => bandGenre.id === genre.id);
+      (this.bandForm.get('genres') as FormArray).push(new FormControl(contains));
     });
   }
 
@@ -89,9 +111,10 @@ export class CreateBandComponent implements OnInit {
     return selectedGenreIds;
   }
 
-  createBand(): void {
+  updateBand(): void {
     const bandRequest = this.mapToRequestDTO();
-    this.bandService.createBand(bandRequest).subscribe({
+    console.log(bandRequest);
+    this.bandService.updateBand(this.band.id, bandRequest).subscribe({
       next: result => {
         if (this.image) {
           this.bandService.uploadBandPhoto(this.image, result.id).subscribe({

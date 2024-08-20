@@ -1,0 +1,39 @@
+.genres {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.3rem;
+    max-height: 5rem;
+    grid-auto-flow: row;
+    grid-auto-rows: 1fr;
+    grid-template-rows: repeat(3, auto);
+}
+
+.genres span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.image {
+    height: 20rem;
+    overflow: hidden;
+    border-radius: 2rem;
+
+    position: relative;
+
+    margin-bottom: 1rem;
+}
+
+.image .pen {
+    position: absolute;
+    height: 1.5rem;
+
+    left: 27rem;
+    top: 17.5rem;
+
+    cursor: pointer;
+}
+
+.image input {
+    display: none;
+}

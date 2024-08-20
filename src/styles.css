@@ -120,6 +120,7 @@ a:hover {
 
 img {
     max-width: 100%;
+    alt: 'No image.';
 }
 
 label.required::after {
