@@ -1,0 +1,31 @@
+<div class="form">
+    <form [formGroup]="gigListingForm" (ngSubmit)="createGigListing()">
+
+        <div class="input-fields">
+
+            <div class="input-group">
+                <label for="startingPrice" class="required">Starting price</label>
+                <input type="number" id="startingPrice" formControlName="startingPrice" autocomplete="off" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="pricePerAdditionalHour" class="required">Price per additional hour</label>
+                <input type="number" id="pricePerAdditionalHour" formControlName="pricePerAdditionalHour" autocomplete="off" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="minimumDurationHours" class="required">Minimum duration (in hours)</label>
+                <input type="number" id="minimumDurationHours" formControlName="minimumDurationHours" autocomplete="off" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="maximumAdditionalHours" class="required">Maximum additional hours</label>
+                <input type="number" id="maximumAdditionalHours" formControlName="maximumAdditionalHours" autocomplete="off" min="0">
+            </div>
+
+        </div>
+
+        <button type="submit">Create</button>
+
+    </form>
+</div>

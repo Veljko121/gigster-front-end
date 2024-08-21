@@ -10,6 +10,7 @@ import { BandCardComponent } from "../../bands/band-card/band-card.component";
 import { UpdateBandComponent } from '../../bands/update-band/update-band.component';
 import { DefaultImageDirective } from '../../../directives/default-image.directive';
 import { ConfirmationDialogComponent } from '../../layout/confirmation-dialog/confirmation-dialog.component';
+import { CreateGigListingComponent } from '../../bands/create-gig-listing/create-gig-listing.component';
 
 @Component({
   selector: 'gig-user-profile',
@@ -138,6 +139,19 @@ export class UserProfileComponent implements OnInit {
         }
       }
     })
+  }
+
+  createGigListing(band: Band): void {
+    let dialogRef = this.dialog.open(CreateGigListingComponent, {
+      data: {
+        band: band
+      }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: result => {
+      }
+    });
   }
 
 }
