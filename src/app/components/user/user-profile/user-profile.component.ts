@@ -9,6 +9,7 @@ import { Band } from '../../bands/model/band.model';
 import { BandCardComponent } from "../../bands/band-card/band-card.component";
 import { UpdateBandComponent } from '../../bands/update-band/update-band.component';
 import { DefaultImageDirective } from '../../../directives/default-image.directive';
+import { ConfirmationDialogComponent } from '../../layout/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'gig-user-profile',
@@ -111,17 +112,30 @@ export class UserProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.bands = [];
       this.loadMyBands();
     })
   }
 
   deleteBand(band: Band): void {
-    this.bandService.deleteBand(band.id).subscribe({
-      next: result => {
-        this.loadMyBands();
-      },
-      error: () => {
-        alert('Error when deleting band.');
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: "Are you sure you want to delete band '" + band.name + "'?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.bandService.deleteBand(band.id).subscribe({
+            next: result => {
+              this.loadMyBands();
+            },
+            error: () => {
+              alert('Error when deleting band.');
+            }
+          })
+        }
       }
     })
   }

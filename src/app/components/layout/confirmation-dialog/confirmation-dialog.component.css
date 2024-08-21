@@ -1,0 +1,19 @@
+.dialog {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.6rem;
+    justify-items: center;
+    align-items: center;
+
+    padding: 1rem;
+}
+
+.dialog label {
+    font-size: 1.3rem;
+}
+
+.dialog .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem;
+}

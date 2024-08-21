@@ -23,8 +23,7 @@ export class BandCardComponent implements OnInit {
 
   constructor(
     private bandService: BandService
-  ) {
-  }
+  ) { }
   
   ngOnInit(): void {
     this.loadProfilePicture(this.band().id);
