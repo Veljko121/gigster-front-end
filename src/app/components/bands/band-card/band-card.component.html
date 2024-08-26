@@ -1,24 +1,32 @@
-<div class="band-card">
+<div class="card band">
 
-    <div class="image">
-        <img [src]="photoUrl" [gigDefaultImage]="'../../../assets/default-band-picture.png'">
-    </div>
+    <div class="content">
 
-    <div class="details">
-
-        <div>
-            <h1>{{band().name}}</h1>
-    
-            <p>{{band().description}}</p>
+        <div class="image">
+            <img [src]="photoUrl" [gigDefaultImage]="'../../../assets/default-band-picture.png'">
         </div>
+
+        <div class="details">
+    
+            <div class="text">
+                <h1>{{band().name}}</h1>
         
+                <p>{{band().description}}</p>
+            </div>
+    
+        </div>
+            
         <div class="buttons">
             <ng-content></ng-content>
         </div>
 
-        <gig-tag>{{band().type | titlecase}}</gig-tag>
+    </div>
 
-        <div class="genres">
+    <div class="tags">
+
+        <gig-tag>{{band().type | titlecase}}</gig-tag>
+    
+        <div class="tags-section">
             @for (genre of band().genres; track $index) {
                 <gig-tag>{{genre.name}}</gig-tag>
             }

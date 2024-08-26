@@ -21,4 +21,14 @@ export class GigListingService {
     return this.http.post<GigListing>(path, gigListingRequest);
   }
 
+  getMyGigListings(): Observable<GigListing[]> {
+    const path = this.basePath + '/my';
+    return this.http.get<GigListing[]>(path);
+  }
+
+  deleteGigListing(gigListingId: number): Observable<any> {
+    const path = this.basePath + '/' + gigListingId;
+    return this.http.delete(path);
+  }
+
 }

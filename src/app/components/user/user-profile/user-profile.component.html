@@ -27,19 +27,36 @@
 
     <div class="content">
 
-        <div class="header">
-            <h1>My bands</h1>
-            <button (click)="openCreateBandDialog()">Add</button>
+        <div class="section">
+            <div class="header">
+                <h1>My bands</h1>
+                <button (click)="openCreateBandDialog()">Add</button>
+            </div>
+    
+            <div class="list">
+                @for (band of bands; track $index) {
+                    <gig-band-card [band]="band">
+                        <button (click)="updateBand(band)">Edit</button>
+                        <button (click)="deleteBand(band)">Delete</button>
+                        <button (click)="createGigListing(band)">Create listing</button>
+                    </gig-band-card>
+                }
+            </div>
         </div>
 
-        <div class="bands">
-            @for (band of bands; track $index) {
-                <gig-band-card [band]="band">
-                    <button (click)="updateBand(band)">Edit</button>
-                    <button (click)="deleteBand(band)">Delete</button>
-                    <button (click)="createGigListing(band)">Create listing</button>
-                </gig-band-card>
-            }
+        <div class="section">
+            <div class="header">
+                <h1>My listings</h1>
+            </div>
+    
+            <div class="list">
+                @for (gigListing of gigListings; track $index) {
+                    <gig-gig-listing-card [gigListing]="gigListing">
+                        <button>Edit</button>
+                        <button (click)="deleteGigListing(gigListing)">Delete</button>
+                    </gig-gig-listing-card>
+                }
+            </div>
         </div>
 
     </div>

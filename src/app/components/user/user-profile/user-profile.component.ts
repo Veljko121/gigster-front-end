@@ -11,6 +11,9 @@ import { UpdateBandComponent } from '../../bands/update-band/update-band.compone
 import { DefaultImageDirective } from '../../../directives/default-image.directive';
 import { ConfirmationDialogComponent } from '../../layout/confirmation-dialog/confirmation-dialog.component';
 import { CreateGigListingComponent } from '../../bands/create-gig-listing/create-gig-listing.component';
+import { GigListing } from '../../bands/model/gig-listing.model';
+import { GigListingService } from '../../bands/gig-listing.service';
+import { GigListingCardComponent } from '../../bands/gig-listing-card/gig-listing-card.component';
 
 @Component({
   selector: 'gig-user-profile',
@@ -18,6 +21,7 @@ import { CreateGigListingComponent } from '../../bands/create-gig-listing/create
   imports: [
     MatDialogModule,
     BandCardComponent,
+    GigListingCardComponent,
     DefaultImageDirective,
   ],
   templateUrl: './user-profile.component.html',
@@ -27,17 +31,20 @@ export class UserProfileComponent implements OnInit {
 
   registeredUser: RegisteredUser | undefined;
   bands: Band[] = [];
+  gigListings: GigListing[] = [];
   profilePicturePath: string | undefined;
 
   constructor(
     private registeredUserService: RegisteredUserService,
     private bandService: BandService,
+    private gigListingService: GigListingService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.loadLoggedInRegisteredUser();
     this.loadMyBands();
+    this.loadMyGigListings();
   }
 
   loadLoggedInRegisteredUser(): void {
@@ -61,6 +68,14 @@ export class UserProfileComponent implements OnInit {
         alert("Error while loading bands.");
       }
     })
+  }
+
+  loadMyGigListings(): void {
+  this.gigListingService.getMyGigListings().subscribe({
+    next: result => {
+      this.gigListings = result;
+    }
+  })
   }
 
   loadProfilePicture(id: number): void {
@@ -150,8 +165,32 @@ export class UserProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: result => {
+        this.loadMyGigListings();
       }
     });
+  }
+
+  deleteGigListing(gigListing: GigListing): void {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: "Are you sure you want to delete the gig listing for band '" + gigListing.band.name + "'?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.gigListingService.deleteGigListing(gigListing.id).subscribe({
+            next: result => {
+              this.loadMyGigListings();
+            },
+            error: () => {
+              alert('Error when deleting gig listing.');
+            }
+          })
+        }
+      }
+    })
   }
 
 }

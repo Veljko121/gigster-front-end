@@ -62,7 +62,13 @@ span.username, span.email {
 .content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
+}
+
+.content .section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .content .header {
@@ -71,7 +77,7 @@ span.username, span.email {
     align-items: center;
 }
 
-.content .bands {
+.content .list {
     display: flex;
     flex-direction: column;
     gap: 1rem;

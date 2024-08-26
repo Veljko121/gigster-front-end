@@ -14,7 +14,7 @@ import { DefaultImageDirective } from '../../../directives/default-image.directi
     DefaultImageDirective,
   ],
   templateUrl: './band-card.component.html',
-  styleUrl: './band-card.component.css'
+  styleUrls: [ '../card-styles.css', './band-card.component.css' ]
 })
 export class BandCardComponent implements OnInit {
 

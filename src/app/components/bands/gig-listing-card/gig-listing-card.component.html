@@ -1,0 +1,32 @@
+<div class="card">
+
+    <div class="content">
+        
+        <div class="details">
+    
+            <div class="text">
+                <h1>{{gigListing().band.name}}</h1>
+        
+                <p>{{gigListing().band.description}}</p>
+            </div>
+    
+            <div></div>
+    
+        </div>
+            
+        <div class="buttons">
+            <ng-content></ng-content>
+        </div>
+        
+    </div>
+    
+    <div class="tags">
+        <gig-tag>Starting price {{gigListing().startingPrice}}</gig-tag>
+
+        <div class="tags-section">
+            <gig-tag>{{gigListing().pricePerAdditionalHour}} per additional hour</gig-tag>
+            <gig-tag>{{gigListing().minimumDurationHours}}-{{gigListing().maximumDurationHours}} hours</gig-tag>
+        </div>
+    </div>
+    
+</div>
