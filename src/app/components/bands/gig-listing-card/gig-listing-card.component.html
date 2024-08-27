@@ -21,7 +21,16 @@
     </div>
     
     <div class="tags">
-        <gig-tag>Starting price {{gigListing().startingPrice}}</gig-tag>
+        <div class="tags-section">
+            @if (gigListing().active) {
+                <gig-tag [backgroundColor]="'green'">Active</gig-tag>
+            }
+            @else {
+                <gig-tag [backgroundColor]="'red'">Expired</gig-tag>
+            }
+
+            <gig-tag>Starting price {{gigListing().startingPrice}}</gig-tag>
+        </div>
 
         <div class="tags-section">
             <gig-tag>{{gigListing().pricePerAdditionalHour}} per additional hour</gig-tag>

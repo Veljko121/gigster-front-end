@@ -8,5 +8,7 @@ export interface GigListing {
     pricePerAdditionalHour: number,
     minimumDurationHours: number,
     maximumAdditionalHours: number,
-    maximumDurationHours: number
+    maximumDurationHours: number,
+    durationDays: number,
+    active: boolean,
 }

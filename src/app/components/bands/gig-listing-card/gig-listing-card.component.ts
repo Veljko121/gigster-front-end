@@ -5,7 +5,9 @@ import { TagComponent } from "../tag/tag.component";
 @Component({
   selector: 'gig-gig-listing-card',
   standalone: true,
-  imports: [TagComponent],
+  imports: [
+    TagComponent,
+  ],
   templateUrl: './gig-listing-card.component.html',
   styleUrls: [
     '../card-styles.css',

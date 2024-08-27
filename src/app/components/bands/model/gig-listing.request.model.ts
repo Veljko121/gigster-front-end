@@ -4,4 +4,5 @@ export interface GigListingRequest {
     pricePerAdditionalHour: number,
     minimumDurationHours: number,
     maximumAdditionalHours: number,
+    durationDays: number,
 }

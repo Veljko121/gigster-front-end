@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'gig-tag',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './tag.component.html',
   styleUrl: './tag.component.css'
 })
-export class TagComponent { }
+export class TagComponent {
+  @Input() backgroundColor: string = '';
+}

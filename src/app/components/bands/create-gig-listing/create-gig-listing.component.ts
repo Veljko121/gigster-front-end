@@ -23,6 +23,7 @@ export class CreateGigListingComponent {
     pricePerAdditionalHour: new FormControl(0, [Validators.required, Validators.min(0)]),
     minimumDurationHours: new FormControl(0, [Validators.required, Validators.min(0)]),
     maximumAdditionalHours: new FormControl(0, [Validators.required, Validators.min(0)]),
+    durationDays: new FormControl(1, [Validators.required, Validators.min(1)]),
   })
 
   constructor(
@@ -40,6 +41,7 @@ export class CreateGigListingComponent {
       pricePerAdditionalHour: this.gigListingForm.value.pricePerAdditionalHour || 0,
       minimumDurationHours: this.gigListingForm.value.minimumDurationHours || 0,
       maximumAdditionalHours: this.gigListingForm.value.maximumAdditionalHours || 0,
+      durationDays: this.gigListingForm.value.durationDays || 1,
     }
 
     console.log(gigListingRequest);
