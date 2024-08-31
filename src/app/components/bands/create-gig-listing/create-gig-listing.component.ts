@@ -19,6 +19,7 @@ export class CreateGigListingComponent {
   band: Band;
 
   gigListingForm = new FormGroup({
+    title: new FormControl("", [Validators.required]),
     startingPrice: new FormControl(0, [Validators.required, Validators.min(0)]),
     pricePerAdditionalHour: new FormControl(0, [Validators.required, Validators.min(0)]),
     minimumDurationHours: new FormControl(0, [Validators.required, Validators.min(0)]),
@@ -37,6 +38,7 @@ export class CreateGigListingComponent {
   createGigListing(): void {
     const gigListingRequest: GigListingRequest = {
       bandId: this.band?.id || -1,
+      title: this.gigListingForm.value.title || '',
       startingPrice: this.gigListingForm.value.startingPrice || 0,
       pricePerAdditionalHour: this.gigListingForm.value.pricePerAdditionalHour || 0,
       minimumDurationHours: this.gigListingForm.value.minimumDurationHours || 0,

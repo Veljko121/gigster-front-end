@@ -4,6 +4,7 @@ export interface GigListing {
     id: number,
     createdDateTime: string,
     band: Band,
+    title: string,
     startingPrice: number,
     pricePerAdditionalHour: number,
     minimumDurationHours: number,
