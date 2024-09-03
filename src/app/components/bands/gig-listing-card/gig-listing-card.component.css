@@ -1,3 +1,35 @@
 .content {
-    grid-template-columns: 1fr auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.text .pricing {
+    display: flex;
+    flex-direction: column;
+}
+
+.average-rating {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    align-items: start;
+
+    height: auto;
+}
+
+.average-rating span {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.3rem;
+
+    background-color: var(--primary-clr);
+    color: white;
+
+    border-radius: 0.5rem;
 }
