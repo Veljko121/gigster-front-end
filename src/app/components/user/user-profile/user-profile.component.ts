@@ -14,6 +14,7 @@ import { CreateGigListingComponent } from '../../bands/create-gig-listing/create
 import { GigListing } from '../../bands/model/gig-listing.model';
 import { GigListingService } from '../../bands/gig-listing.service';
 import { GigListingCardComponent } from '../../bands/gig-listing-card/gig-listing-card.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'gig-user-profile',
@@ -35,6 +36,7 @@ export class UserProfileComponent implements OnInit {
   profilePicturePath: string | undefined;
 
   constructor(
+    private authService: AuthService,
     private registeredUserService: RegisteredUserService,
     private bandService: BandService,
     private gigListingService: GigListingService,
@@ -45,6 +47,10 @@ export class UserProfileComponent implements OnInit {
     this.loadLoggedInRegisteredUser();
     this.loadMyBands();
     this.loadMyGigListings();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
   loadLoggedInRegisteredUser(): void {
@@ -71,11 +77,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadMyGigListings(): void {
-  this.gigListingService.getMyGigListings().subscribe({
-    next: result => {
-      this.gigListings = result;
-    }
-  })
+    this.gigListingService.getMyGigListings().subscribe({
+      next: result => {
+        this.gigListings = result;
+      }
+    })
   }
 
   loadProfilePicture(id: number): void {

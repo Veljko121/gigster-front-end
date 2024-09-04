@@ -7,14 +7,25 @@
     --primary-clr-lightness: 20%;
     --primary-clr-alpha: 100%;
 
-    --primary-clr-lightness-hover: calc(var(--primary-clr-lightness) * var(--hover-lightness-factor));
+    --secondary-clr-hue: 18;
+    --secondary-clr-saturation: 90%;
+    --secondary-clr-lightness: 35%;
+    --secondary-clr-alpha: 100%;
 
+    --primary-clr-lightness-hover: calc(var(--primary-clr-lightness) * var(--hover-lightness-factor));
     --primary-clr-lightness-click: calc(var(--primary-clr-lightness) * var(--click-lightness-factor));
+
+    --secondary-clr-lightness-hover: calc(var(--secondary-clr-lightness) * var(--hover-lightness-factor));
+    --secondary-clr-lightness-click: calc(var(--secondary-clr-lightness) * var(--click-lightness-factor));
 
     /* accent colors */
     --primary-clr: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness), var(--primary-clr-alpha));
     --primary-clr-hover: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness-hover), var(--primary-clr-alpha)); 
     --primary-clr-click: hsla(var(--primary-clr-hue), var(--primary-clr-saturation), var(--primary-clr-lightness-click), var(--primary-clr-alpha));
+
+    --secondary-clr: hsla(var(--secondary-clr-hue), var(--secondary-clr-saturation), var(--secondary-clr-lightness), var(--secondary-clr-alpha));
+    --secondary-clr-hover: hsla(var(--secondary-clr-hue), var(--secondary-clr-saturation), var(--secondary-clr-lightness-hover), var(--secondary-clr-alpha)); 
+    --secondary-clr-click: hsla(var(--secondary-clr-hue), var(--secondary-clr-saturation), var(--secondary-clr-lightness-click), var(--secondary-clr-alpha));
 
     /* theme colors */
     --background-clr: white;
@@ -74,19 +85,32 @@ input, textarea, select {
 
     border: 1px solid #777;
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
 
     transition: 0.15s;
+
+    accent-color: var(--secondary-clr);
 }
 
 select {
     accent-color: var(--primary-clr);
+    width: auto;
 }
 
 input[type='checkbox'] {
     width: 1rem;
     height: 1rem;
-    accent-color: var(--primary-clr);
+}
+
+span.checkbox {
+    display: flex;
+    gap: 0.25rem;
+}
+
+span.checkbox span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
 }
 
 textarea {

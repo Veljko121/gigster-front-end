@@ -1,0 +1,117 @@
+<div class="layout">
+
+    <div class="text-query">
+        <span>Bands
+            @if (searchForm.value.text) {
+                : "<strong>iPhone</strong>"
+            }
+        </span>
+    </div>
+
+    <form [formGroup]="searchForm">
+
+        <div class="grid">
+    
+            <div class="filters">
+
+                <!-- <div class="filter">
+                    <label>Band types</label>
+                    <div class="checkboxes">
+                        @for (bandType of bandTypes; track $index) {
+                            <span class="checkbox">
+                                <input type="checkbox" [formControlName]="$index" [value]="bandType">
+                                <span>{{bandType | titlecase}}</span>
+                            </span>
+                        }
+                    </div>
+                </div> -->
+    
+                <!-- <div class="filter">
+                    <label>Genres</label>
+                    <div class="checkboxes genres">
+                        @for (genre of genres; track $index) {
+                            <span class="checkbox">
+                                <input type="checkbox" [formControlName]="$index" [value]="genre.id">
+                                <span>{{genre.name| titlecase}}</span>
+                            </span>
+                        }
+                    </div>
+                </div> -->
+    
+                <div class="filter">
+                    <label for="maximumPrice">Maximum price</label>
+                    <span>Price to {{searchForm.value.maximumPrice}}</span>
+                    <input id="maximumPrice" formControlName="maximumPrice" type="range" min="0" [max]="maximumPrice" [value]="maximumPrice">
+                </div>
+    
+                <div class="filter">
+                    <label for="durationHours">Duration (hours)</label>
+                    <span>{{searchForm.value.durationHours}} hours</span>
+                    <input id="durationHours" formControlName="durationHours" type="range" [min]="minimumDuration" [max]="maximumDuration">
+                </div>
+    
+            </div>
+    
+            <div class="content">
+
+                <div class="sorting-paging-section">
+                    <label>Total: {{this.pagedResult?.page?.totalElements}}</label>
+
+                    <div class="controls">
+
+                        <div class="control">
+                            <label>Items per page:</label>
+                            <select formControlName="pageSize">
+                                <option>20</option>
+                                <option>30</option>
+                                <option>50</option>
+                            </select>
+                        </div>
+
+                        <div class="control">
+                            <label>Sort by:</label>
+                            <select>
+                                <option>Name</option>
+                                <option>Price (lowest)</option>
+                                <option>Price (highest)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="gig-listings">
+                    @for (gigListing of gigListings; track $index) {
+                        <gig-gig-listing-card [gigListing]="gigListing"></gig-gig-listing-card>
+                    }
+                </div>
+
+                <div class="sorting-paging-section">
+                    <label>Total: {{this.pagedResult?.page?.totalElements}}</label>
+
+                    <div class="pages">
+                        <span>Page {{(pagedResult?.page?.number || 0) + 1}} of {{pagedResult?.page?.totalPages}}</span>
+                        <div class="buttons">
+                            @if ((pagedResult?.page?.number || 0) + 1 > 1) {
+                                @if ((pagedResult?.page?.number || 0) + 1 > 2) {
+                                    <button (click)="firstPage()">&lt;&lt;</button>
+                                }
+                                <button (click)="previousPage()">&lt;</button>
+                            }
+                            @if ((pagedResult?.page?.number || 0) + 1 < (pagedResult?.page?.totalPages || 0)) {
+                                <button (click)="nextPage()">&gt;</button>
+                                @if ((pagedResult?.page?.number || 0) + 1 < (pagedResult?.page?.totalPages || 0) - 1) {
+                                    <button (click)="lastPage()">&gt;&gt;</button>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>

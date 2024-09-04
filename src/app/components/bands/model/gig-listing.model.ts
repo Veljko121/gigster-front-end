@@ -11,6 +11,7 @@ export class GigListing {
     minimumDurationHours!: number;
     maximumAdditionalHours!: number;
     maximumDurationHours!: number;
+    maximumPrice!: number;
     durationDays!: number;
     active!: boolean;
 

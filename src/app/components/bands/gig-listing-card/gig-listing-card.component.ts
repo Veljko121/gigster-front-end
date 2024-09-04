@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { GigListing } from '../model/gig-listing.model';
 import { TagComponent } from "../tag/tag.component";
 import { BandService } from '../band.service';
@@ -17,11 +17,12 @@ import { DefaultImageDirective } from '../../../directives/default-image.directi
     './gig-listing-card.component.css',
   ]
 })
-export class GigListingCardComponent implements OnInit {
+export class GigListingCardComponent implements OnInit, OnChanges {
 
   photoUrl?: string;
   
-  loadProfilePicture(id: number): void {
+  loadBandPicture(): void {
+    const id = this.gigListing().band.id;
     this.photoUrl = this.bandService.getBandPhoto(id) + '?' + (new Date()).getTime();
   }
   
@@ -34,9 +35,15 @@ export class GigListingCardComponent implements OnInit {
   constructor(
     private bandService: BandService
   ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['gigListing']) {
+      this.loadBandPicture();
+    }
+  }
   
   ngOnInit(): void {
-    this.loadProfilePicture(this.gigListing().band.id);
+    this.loadBandPicture();
     this.minimumPrice = this.gigListing().getMinimumPrice(this.minimumHours() || this.gigListing().minimumDurationHours);
     this.maximumPrice = this.gigListing().getMaximumPrice(this.maximumHours() || this.gigListing().maximumDurationHours);
   }

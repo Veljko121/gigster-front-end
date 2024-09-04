@@ -1,0 +1,108 @@
+.layout {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 3rem;
+}
+
+.text-query {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+}
+
+.text-query span {
+    font-size: 2rem;
+}
+
+.layout .grid {
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+}
+
+.layout .grid .filters {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    border: 1px solid var(--primary-clr);
+    border-radius: 0.5rem;
+
+    padding: 0.8rem;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.genres {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.content .sorting-paging-section {
+    display: flex;
+
+    border: 1px solid black;
+    border-radius: 0.5rem;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+}
+
+.sorting-paging-section .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.controls .control {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.control select {
+    font-size: 1.1rem;
+}
+
+.sorting-paging-section label {
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.sorting-paging-section .pages {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pages .buttons {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.gig-listings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

@@ -3,6 +3,13 @@
         <img src="./assets/logo.svg" alt="Logo"/>
         <label>Gigster</label>
     </div>
+    <ul class="nav-buttons">
+        <li [routerLink]="['search']">Bands</li>
+    </ul>
+    <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
     <nav>
         <ul class="nav-buttons">
             @if (user?.username === '') {
@@ -10,12 +17,13 @@
                 <li [routerLink]="['register']">Register</li>
             }
             @if (user?.username !== '') {
-                <li class="dropdown">{{ user?.username }}
+                <li [routerLink]="['profile']">{{user?.username}}</li>
+                <!-- <li class="dropdown">{{ user?.username }}
                     <ul>
                         <li [routerLink]="['profile']">Profile</li>
                         <li (click)="logout()">Logout</li>
                     </ul>
-                </li>
+                </li> -->
             }
         </ul>
     </nav>

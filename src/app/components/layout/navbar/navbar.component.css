@@ -1,12 +1,17 @@
 .panel {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 0.4rem;
 
-    padding: 0.5rem;
+    padding-block: 0.8rem;
+    padding-inline: 2rem;
     align-items: center;
+
+    max-width: 1920px;
+    margin-inline: auto;
 }
 
-nav ul {
+ul {
     display: flex;  
     justify-content: flex-end;
     align-items: center;
@@ -14,7 +19,7 @@ nav ul {
     list-style: none;
 }
 
-nav ul li {
+ul li {
     color: white;
     font-weight: bold;
     font-size: larger;
@@ -22,10 +27,12 @@ nav ul li {
     padding-block: 0.4rem;
     padding-inline: 0.7rem;
 
+    border-radius: 0.5rem;
+
     cursor: pointer;
 }
 
-nav ul li:hover {
+ul li:hover {
     background-color: var(--primary-clr-hover);
 }
 
@@ -38,6 +45,14 @@ nav ul li:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    padding: 0.5rem;
+
+    border-radius: 1rem;
+    border: 2px solid white;
+}
+
+.branding:hover {
+    cursor: pointer;
 }
 
 .branding label {
@@ -76,4 +91,16 @@ li.dropdown:hover ul {
 
 li.dropdown ul li:hover {
     background-color: var(--primary-clr-hover);
+}
+
+.search-box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.2rem;
+
+    margin-inline: 5rem;
+}
+
+.search-box button {
+    background-color: var(--secondary-clr);
 }

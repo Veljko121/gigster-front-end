@@ -39,7 +39,7 @@
                 <label for="description">Genres</label>
                 <div class="genres" formArrayName="genres">
                     @for (genre of genres; track $index) {
-                        <span>
+                        <span class="checkbox">
                             <input type="checkbox" [formControlName]="$index" [value]="genre.id">
                             <span>{{genre.name}}</span>
                         </span>

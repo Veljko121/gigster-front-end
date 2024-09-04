@@ -8,12 +8,6 @@
     grid-template-rows: repeat(3, auto);
 }
 
-.genres span {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-}
-
 .image {
     height: 20rem;
     overflow: hidden;

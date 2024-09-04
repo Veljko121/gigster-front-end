@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Band } from '../model/band.model';
 import { TagComponent } from "../tag/tag.component";
 import { TitleCasePipe } from '@angular/common';
@@ -19,7 +19,7 @@ import { DefaultImageDirective } from '../../../directives/default-image.directi
     './band-card.component.css',
   ]
 })
-export class BandCardComponent implements OnInit {
+export class BandCardComponent implements OnInit, OnChanges {
 
   band = input.required<Band>();
   photoUrl?: string;
@@ -27,12 +27,19 @@ export class BandCardComponent implements OnInit {
   constructor(
     private bandService: BandService
   ) { }
-  
-  ngOnInit(): void {
-    this.loadProfilePicture(this.band().id);
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['band']) {
+      this.loadBandPicture();
+    }
   }
   
-  loadProfilePicture(id: number): void {
+  ngOnInit(): void {
+    this.loadBandPicture();
+  }
+  
+  loadBandPicture(): void {
+    const id = this.band().id;
     this.photoUrl = this.bandService.getBandPhoto(id) + '?' + (new Date()).getTime();
   }
 
