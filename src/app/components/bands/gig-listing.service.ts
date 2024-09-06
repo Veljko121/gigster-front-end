@@ -42,6 +42,11 @@ export class GigListingService {
     return this.http.get<number>(path);
   }
 
+  getMaximumHours(): Observable<number> {
+    const path = this.basePath + '/maximum-hours';
+    return this.http.get<number>(path);
+  }
+
   searchGigListings(
     page?: number | null,
     pageSize?: number| null,
@@ -49,7 +54,8 @@ export class GigListingService {
     bandTypes?: string[] | null,
     genreIds?: number[] | null,
     maximumPrice?: number | null,
-    durationHours?: number | null
+    durationHours?: number | null,
+    sortBy?: string | null,
   ): Observable<PagedResult<GigListing>> {
     const path = this.basePath + '/search';
   
@@ -85,6 +91,10 @@ export class GigListingService {
       genreIds.forEach(id => {
         params = params.append('genreIds', id.toString());
       });
+    }
+  
+    if (sortBy !== undefined && sortBy !== null && sortBy !== '') {
+      params = params.set('sortBy', sortBy);
     }
   
     return this.http.get<PagedResult<GigListing>>(path, { params }).pipe(

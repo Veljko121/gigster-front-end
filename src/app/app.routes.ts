@@ -6,7 +6,7 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
 import { SearchPageComponent } from './components/search/search-page/search-page.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', redirectTo: 'search', pathMatch: 'full' },
     { path: 'home', redirectTo: '', pathMatch: 'full' },
     { path: 'register', component: RegistrationComponent },
     { path: 'login', component: LoginComponent },

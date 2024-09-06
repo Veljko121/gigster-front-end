@@ -106,3 +106,13 @@
     flex-direction: column;
     gap: 0.5rem;
 }
+
+gig-gig-listing-card span {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+gig-gig-listing-card span strong {
+    color: rgb(202, 172, 0);
+}

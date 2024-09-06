@@ -1,53 +1,47 @@
 <div class="layout">
 
     <div class="text-query">
-        <span>Bands
-            @if (searchForm.value.text) {
-                : "<strong>iPhone</strong>"
-            }
-        </span>
+        <span>Bands@if (searchRequest.query) {: "<strong>{{searchRequest.query}}</strong>"}</span>
     </div>
-
-    <form [formGroup]="searchForm">
 
         <div class="grid">
     
             <div class="filters">
 
-                <!-- <div class="filter">
+                <div class="filter">
                     <label>Band types</label>
                     <div class="checkboxes">
                         @for (bandType of bandTypes; track $index) {
                             <span class="checkbox">
-                                <input type="checkbox" [formControlName]="$index" [value]="bandType">
+                                <input type="checkbox" [id]="'band_type_' + bandType" (change)="onBandTypeChange($event, bandType)">
                                 <span>{{bandType | titlecase}}</span>
                             </span>
                         }
                     </div>
-                </div> -->
+                </div>
     
-                <!-- <div class="filter">
+                <div class="filter">
                     <label>Genres</label>
                     <div class="checkboxes genres">
                         @for (genre of genres; track $index) {
                             <span class="checkbox">
-                                <input type="checkbox" [formControlName]="$index" [value]="genre.id">
-                                <span>{{genre.name| titlecase}}</span>
+                                <input type="checkbox" [id]="'genre_' + genre.id" (change)="onGenreChange($event, genre.id)">
+                                <span>{{genre.name | titlecase}}</span>
                             </span>
                         }
                     </div>
-                </div> -->
+                </div>
     
                 <div class="filter">
-                    <label for="maximumPrice">Maximum price</label>
-                    <span>Price to {{searchForm.value.maximumPrice}}</span>
-                    <input id="maximumPrice" formControlName="maximumPrice" type="range" min="0" [max]="maximumPrice" [value]="maximumPrice">
+                    <label for="price">Maximum price</label>
+                    <span>Price to {{searchRequest.price}}</span>
+                    <input id="price" type="range" min="0" [max]="maximumPrice" [value]="maximumPrice" (mouseup)="onPriceChanged()" [(ngModel)]="searchRequest.price">
                 </div>
     
                 <div class="filter">
                     <label for="durationHours">Duration (hours)</label>
-                    <span>{{searchForm.value.durationHours}} hours</span>
-                    <input id="durationHours" formControlName="durationHours" type="range" [min]="minimumDuration" [max]="maximumDuration">
+                    <span>{{searchRequest.durationHours}} hours</span>
+                    <input id="durationHours" type="range" [min]="minimumDuration" [max]="maximumDuration" (mouseup)="onDurationHoursChanged()" [(ngModel)]="searchRequest.durationHours">
                 </div>
     
             </div>
@@ -61,7 +55,7 @@
 
                         <div class="control">
                             <label>Items per page:</label>
-                            <select formControlName="pageSize">
+                            <select [(ngModel)]="searchRequest.pageSize" (change)="onPageSizeChanged()">
                                 <option>20</option>
                                 <option>30</option>
                                 <option>50</option>
@@ -70,10 +64,10 @@
 
                         <div class="control">
                             <label>Sort by:</label>
-                            <select>
-                                <option>Name</option>
-                                <option>Price (lowest)</option>
-                                <option>Price (highest)</option>
+                            <select [(ngModel)]="searchRequest.sortBy" (change)="onSortByChanged()">
+                                <option value="name">Name</option>
+                                <option value="price_lowest">Price (lowest)</option>
+                                <option value="price_highest">Price (highest)</option>
                             </select>
                         </div>
 
@@ -82,13 +76,15 @@
                 </div>
 
                 <div class="gig-listings">
-                    @for (gigListing of gigListings; track $index) {
-                        <gig-gig-listing-card [gigListing]="gigListing"></gig-gig-listing-card>
+                    @for (gigListing of pagedResult?.content; track $index) {
+                        <gig-gig-listing-card [gigListing]="gigListing">
+                            <span><strong>{{gigListing.getMinimumPrice(searchRequest.durationHours)}}</strong> ({{searchRequest.durationHours}}h)</span>
+                        </gig-gig-listing-card>
                     }
                 </div>
 
                 <div class="sorting-paging-section">
-                    <label>Total: {{this.pagedResult?.page?.totalElements}}</label>
+                    <label>Total: {{pagedResult?.page?.totalElements}}</label>
 
                     <div class="pages">
                         <span>Page {{(pagedResult?.page?.number || 0) + 1}} of {{pagedResult?.page?.totalPages}}</span>
@@ -111,7 +107,5 @@
 
             </div>
         </div>
-
-    </form>
 
 </div>

@@ -3,13 +3,15 @@ import { GigListing } from '../model/gig-listing.model';
 import { TagComponent } from "../tag/tag.component";
 import { BandService } from '../band.service';
 import { DefaultImageDirective } from '../../../directives/default-image.directive';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'gig-gig-listing-card',
   standalone: true,
   imports: [
     TagComponent,
-    DefaultImageDirective
+    DefaultImageDirective,
+    TitleCasePipe,
   ],
   templateUrl: './gig-listing-card.component.html',
   styleUrls: [

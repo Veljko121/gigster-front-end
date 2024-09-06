@@ -11,16 +11,16 @@
             <h1>{{gigListing().fullTitle}}</h1>
 
             <div class="average-rating">
-                <span>9.2</span>
+                <!-- <span>9.2</span> -->
             </div>
     
             <div class="text">
                 <p>{{gigListing().band.description}}</p>
 
                 <div class="pricing">
-                    <label>Starting price: <strong>{{gigListing().startingPrice}}</strong></label>
+                    <label>Starting price: <strong>{{gigListing().startingPrice}} (for {{gigListing().minimumDurationHours}}h)</strong></label>
                     <label>Price per additional hour: <strong>{{gigListing().pricePerAdditionalHour}}</strong></label>
-                    <label>Duration: <strong>{{gigListing().minimumDurationHours}}h</strong>-<strong>{{gigListing().maximumDurationHours}}h</strong></label>
+                    <label>Maximum duration: <strong>{{gigListing().maximumDurationHours}}h</strong></label>
                 </div>
             </div>
             
@@ -36,14 +36,15 @@
     
     <div class="tags">
         <div class="tags-section">
-            @if (gigListing().active) {
+            <!-- @if (gigListing().active) {
                 <gig-tag [backgroundColor]="'green'">Active</gig-tag>
             }
             @else {
                 <gig-tag [backgroundColor]="'red'">Expired</gig-tag>
             }
 
-            <gig-tag>Starting price {{gigListing().startingPrice}}</gig-tag>
+            <gig-tag>Starting price {{gigListing().startingPrice}}</gig-tag> -->
+            <gig-tag>{{gigListing().band.type | titlecase}}</gig-tag>
         </div>
 
         <div class="tags-section">

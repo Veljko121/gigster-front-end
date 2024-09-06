@@ -15,11 +15,13 @@ export class GigListing {
     durationDays!: number;
     active!: boolean;
 
-    public getMinimumPrice(minimumHours: number): number {
-        if (this.startingPrice != undefined && this.pricePerAdditionalHour != undefined && minimumHours >= this.minimumDurationHours) {
-            return this.startingPrice + (minimumHours - this.minimumDurationHours) * this.pricePerAdditionalHour;
+    public getMinimumPrice(minimumHours: number | null | undefined): number {
+        if (minimumHours !== undefined && minimumHours !== null) {
+            if (this.startingPrice != undefined && this.pricePerAdditionalHour != undefined && minimumHours >= this.minimumDurationHours) {
+                return this.startingPrice + (minimumHours - this.minimumDurationHours) * this.pricePerAdditionalHour;
+            }
         }
-        return 0;
+        return this.startingPrice;
     }
 
     public getMaximumPrice(maximumHours: number): number {
