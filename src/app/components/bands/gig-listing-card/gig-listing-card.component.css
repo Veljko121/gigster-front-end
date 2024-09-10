@@ -5,13 +5,17 @@
 
 .info {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr auto;
     grid-template-rows: auto 1fr;
 }
 
 .text .pricing {
     display: flex;
     flex-direction: column;
+}
+
+.text p {
+    text-align: justify;
 }
 
 .average-rating {

@@ -1,6 +1,6 @@
 .genres {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 0.3rem;
     max-height: 5rem;
     grid-auto-flow: row;
@@ -9,7 +9,7 @@
 }
 
 .image {
-    height: 20rem;
+    height: 19rem;
     overflow: hidden;
     border-radius: 2rem;
 
@@ -22,8 +22,8 @@
     position: absolute;
     height: 1.5rem;
 
-    left: 27rem;
-    top: 17.5rem;
+    left: 26.5rem;
+    top: 16.1rem;
 
     cursor: pointer;
 }

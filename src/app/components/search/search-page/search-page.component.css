@@ -22,6 +22,7 @@
 .layout .grid .filters {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .filters .filter {

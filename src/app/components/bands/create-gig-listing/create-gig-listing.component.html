@@ -4,18 +4,31 @@
         <div class="input-fields">
 
             <div class="input-group">
+                <label for="title" class="required">Title</label>
+                <input type="text" id="title" formControlName="title" autocomplete="off">
+                @if (gigListingForm.controls['title'].dirty) {
+                    <div class="errors">
+                        @if (gigListingForm.controls['title'].errors?.['required']) {
+                            <p>This field is required.</p>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="input-group">
                 <label for="startingPrice" class="required">Starting price</label>
-                <input type="number" id="startingPrice" formControlName="startingPrice" autocomplete="off" min="0">
+
+                <div class="fields">
+                    <input type="number" id="startingPrice" formControlName="startingPrice" autocomplete="off" min="0">
+                    <span>for</span>
+                    <input type="number" id="minimumDurationHours" formControlName="minimumDurationHours" autocomplete="off" min="0">
+                    <span>hours</span>
+                </div>
             </div>
 
             <div class="input-group">
                 <label for="pricePerAdditionalHour" class="required">Price per additional hour</label>
                 <input type="number" id="pricePerAdditionalHour" formControlName="pricePerAdditionalHour" autocomplete="off" min="0">
-            </div>
-
-            <div class="input-group">
-                <label for="minimumDurationHours" class="required">Minimum duration (in hours)</label>
-                <input type="number" id="minimumDurationHours" formControlName="minimumDurationHours" autocomplete="off" min="0">
             </div>
 
             <div class="input-group">
