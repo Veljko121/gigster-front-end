@@ -83,7 +83,6 @@ export class UpdateBandComponent implements OnInit {
             break;
           }
         }
-
       }
     })
   }
@@ -113,7 +112,6 @@ export class UpdateBandComponent implements OnInit {
 
   updateBand(): void {
     const bandRequest = this.mapToRequestDTO();
-    console.log(bandRequest);
     this.bandService.updateBand(this.band.id, bandRequest).subscribe({
       next: result => {
         if (this.image) {
@@ -136,7 +134,6 @@ export class UpdateBandComponent implements OnInit {
 
   mapToRequestDTO(): BandRequest {
     const values = this.bandForm.value;
-    const type = values.type?.toLocaleUpperCase();
     const bandRequest: BandRequest = {
       name: values.name || '',
       description: values.description || '',

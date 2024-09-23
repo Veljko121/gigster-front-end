@@ -1,0 +1,10 @@
+.input-group .fields {
+    display: flex;
+    gap: 0.2rem;
+
+    align-items: center;
+}
+
+.fields span {
+    font-size: 1rem;
+}

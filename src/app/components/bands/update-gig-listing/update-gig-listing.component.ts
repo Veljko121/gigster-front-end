@@ -1,22 +1,25 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GigListing } from '../model/gig-listing.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GigListingUpdateRequest } from '../model/gig-listing-update.request.model';
 import { GigListingService } from '../gig-listing.service';
-import { Band } from '../model/band.model';
-import { GigListingRequest } from '../model/gig-listing.request.model';
 
 @Component({
-  selector: 'gig-create-gig-listing',
+  selector: 'gig-update-gig-listing',
   standalone: true,
   imports: [
     ReactiveFormsModule
   ],
-  templateUrl: './create-gig-listing.component.html',
-  styleUrls: ['./create-gig-listing.component.css', '../../shared-styles.css']
+  templateUrl: './update-gig-listing.component.html',
+  styleUrls: [
+    './update-gig-listing.component.css',
+    '../../shared-styles.css',
+  ]
 })
-export class CreateGigListingComponent {
+export class UpdateGigListingComponent {
 
-  band: Band;
+  gigListing: GigListing;
 
   gigListingForm = new FormGroup({
     title: new FormControl("", [Validators.required]),
@@ -28,30 +31,36 @@ export class CreateGigListingComponent {
   })
 
   constructor(
-    private dialogRef: MatDialogRef<CreateGigListingComponent>,
+    private dialogRef: MatDialogRef<UpdateGigListingComponent>,
     private gigListingService: GigListingService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
-    this.band = data.band;
+    this.gigListing = data.gigListing;
+    this.gigListingForm.patchValue({
+      title: this.gigListing.title,
+      startingPrice: this.gigListing.startingPrice,
+      pricePerAdditionalHour: this.gigListing.pricePerAdditionalHour,
+      minimumDurationHours: this.gigListing.minimumDurationHours,
+      maximumAdditionalHours: this.gigListing.maximumAdditionalHours,
+      durationDays: this.gigListing.durationDays,
+    });
   }
 
-  createGigListing(): void {
-    const gigListingRequest: GigListingRequest = {
-      bandId: this.band?.id || -1,
+  updateGigListing(): void {
+    const gigListingUpdateRequest: GigListingUpdateRequest = {
       title: this.gigListingForm.value.title || '',
       startingPrice: this.gigListingForm.value.startingPrice || 0,
       pricePerAdditionalHour: this.gigListingForm.value.pricePerAdditionalHour || 0,
       minimumDurationHours: this.gigListingForm.value.minimumDurationHours || 0,
       maximumAdditionalHours: this.gigListingForm.value.maximumAdditionalHours || 0,
-      durationDays: this.gigListingForm.value.durationDays || 1,
     }
 
-    this.gigListingService.createGigListing(gigListingRequest).subscribe({
+    this.gigListingService.updateGigListing(this.gigListing.id, gigListingUpdateRequest).subscribe({
       next: result => {
         this.dialogRef.close(result);
       },
       error: () => {
-        alert("Error when creating gig listing.");
+        alert("Error when updating gig listing.");
       }
     })
   }

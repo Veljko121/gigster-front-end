@@ -59,7 +59,7 @@
                 <div class="list">
                     @for (gigListing of gigListings; track $index) {
                         <gig-gig-listing-card [gigListing]="gigListing">
-                            <button>Edit</button>
+                            <button (click)="updateGigListing(gigListing)">Edit</button>
                             <button (click)="deleteGigListing(gigListing)">Delete</button>
                         </gig-gig-listing-card>
                     }

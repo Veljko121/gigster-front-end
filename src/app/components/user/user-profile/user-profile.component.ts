@@ -15,6 +15,7 @@ import { GigListing } from '../../bands/model/gig-listing.model';
 import { GigListingService } from '../../bands/gig-listing.service';
 import { GigListingCardComponent } from '../../bands/gig-listing-card/gig-listing-card.component';
 import { AuthService } from '../../auth/auth.service';
+import { UpdateGigListingComponent } from '../../bands/update-gig-listing/update-gig-listing.component';
 
 @Component({
   selector: 'gig-user-profile',
@@ -134,8 +135,8 @@ export class UserProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.bands = [];
       this.loadMyBands();
+      this.loadMyGigListings();
     })
   }
 
@@ -150,8 +151,9 @@ export class UserProfileComponent implements OnInit {
       next: (result) => {
         if (result) {
           this.bandService.deleteBand(band.id).subscribe({
-            next: result => {
+            next: () => {
               this.loadMyBands();
+              this.loadMyGigListings();
             },
             error: () => {
               alert('Error when deleting band.');
@@ -170,7 +172,21 @@ export class UserProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe({
-      next: result => {
+      next: () => {
+        this.loadMyGigListings();
+      }
+    });
+  }
+
+  updateGigListing(gigListing: GigListing): void {
+    let dialogRef = this.dialog.open(UpdateGigListingComponent, {
+      data: {
+        gigListing: gigListing
+      }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: () => {
         this.loadMyGigListings();
       }
     });
@@ -187,7 +203,7 @@ export class UserProfileComponent implements OnInit {
       next: (result) => {
         if (result) {
           this.gigListingService.deleteGigListing(gigListing.id).subscribe({
-            next: result => {
+            next: () => {
               this.loadMyGigListings();
             },
             error: () => {

@@ -5,6 +5,7 @@ import { GigListingRequest } from './model/gig-listing.request.model';
 import { GigListing } from './model/gig-listing.model';
 import { map, Observable } from 'rxjs';
 import { PagedResult } from '../../utils/model/paged-result.model';
+import { GigListingUpdateRequest } from './model/gig-listing-update.request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class GigListingService {
   deleteGigListing(gigListingId: number): Observable<any> {
     const path = this.basePath + '/' + gigListingId;
     return this.http.delete(path);
+  }
+
+  updateGigListing(gigListingId: number, gigListingRequest: GigListingUpdateRequest): Observable<GigListing> {
+    const path = this.basePath + '/' + gigListingId;
+    return this.http.put<GigListing>(path, gigListingRequest);
   }
 
   getMaximumPrice(): Observable<number> {
