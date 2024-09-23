@@ -86,3 +86,7 @@ span.username, span.email {
 button.logout {
     background-color: var(--secondary-clr);
 }
+
+.section span {
+    font-size: 1.3rem;
+}
